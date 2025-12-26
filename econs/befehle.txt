@@ -1,0 +1,30 @@
+vim -p **/*.cpp **/*.h
+
+find . -maxdepth 1 -type f -executable
+find /pfad/zum/verzeichnis -type f -executable -exec ls -l {} \;
+find /pfad/zum/verzeichnis -type f -name "*.sh" -executable
+
+shopt -s globstar
+vim -p **/*.cpp **/*.h
+
+:tabedit file1.cpp
+:tabedit file2.h
+
+nnn
+ranger
+vifm
+lf
+cfiles
+
+ranger
+yy  → kopieren
+dd  → ausschneiden
+p   → einfügen
+rr  → umbenennen
+Tabs und Bookmarks
+Tabs: Ctrl-n (neuer Tab), Ctrl-Tab (wechseln).
+Bookmarks: m + Buchstabe, dann ’ + Buchstabe um schnell zu springen.
+Navigation
+Vim-ähnliche Tasten: h (hoch), l (runter/öffnen), j/k (nach unten/oben), gg/G (Anfang/Ende).
+Schnelles Durchsuchen: Tippe / und beginne zu tippen, um Dateien im aktuellen Verzeichnis zu filtern.
+Rekursive Vorschau: Drücke zh/zl, um versteckte Dateien ein- oder auszublenden

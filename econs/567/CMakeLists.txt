@@ -1,0 +1,39 @@
+cmake_minimum_required(VERSION 3.16)
+project(EconsProject LANGUAGES CXX)
+
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+# UTF-8 & Warnungen
+if (MSVC)
+    add_compile_options(/utf-8 /W4)
+else()
+    add_compile_options(-Wall -Wextra -O2)
+endif()
+
+# Header-Verzeichnis
+include_directories(${PROJECT_SOURCE_DIR}/include)
+
+# Output nach <project>/bin
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
+
+# Quellen
+set(SOURCES
+    src/main.cpp
+    src/math_utils.cpp
+)
+
+# Executable
+add_executable(econs ${SOURCES})
+
+# ---- Binary zusätzlich nach ~/myRepos/csvPy/econs/bin/ kopieren ----
+set(EXTERNAL_BIN_DIR "$ENV{HOME}/myRepos/csvPy/econs/bin")
+
+add_custom_command(TARGET econs POST_BUILD
+    COMMAND ${CMAKE_COMMAND} -E make_directory "${EXTERNAL_BIN_DIR}"
+    COMMAND ${CMAKE_COMMAND} -E copy
+            "$<TARGET_FILE:econs>"
+            "${EXTERNAL_BIN_DIR}/"
+    COMMENT "Copying econs to ${EXTERNAL_BIN_DIR}"
+)
